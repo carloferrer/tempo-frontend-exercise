@@ -30,7 +30,6 @@ export const Sticky = ({
         WebkitUserSelect: 'none',
       }}
       onMouseDown={() => {
-        console.log(`grabbing ${id}`);
         dispatchStickies({
           type: 'move',
           id,
@@ -42,7 +41,6 @@ export const Sticky = ({
       }}
       onPointerMove={({ clientX, clientY }) => {
         if (onTheMove) {
-          console.log({ id, clientX, clientY });
           dispatchStickies({
             type: 'move',
             id,
@@ -57,7 +55,6 @@ export const Sticky = ({
         }
       }}
       onMouseUp={() => {
-        console.log(`released ${id}`);
         dispatchStickies({
           type: 'move',
           id,
@@ -68,9 +65,7 @@ export const Sticky = ({
         });
       }}
     >
-      <p>
-        id: {id} | {note}
-      </p>
+      <p>{note}</p>
     </div>
   );
 };
