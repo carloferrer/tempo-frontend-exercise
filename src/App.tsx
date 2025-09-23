@@ -2,8 +2,6 @@ import { useMemo, useReducer, useState } from 'react';
 import type { TSticky } from './types';
 import { Sticky } from './components/Sticky';
 
-type StickiesType = Record<number, TSticky>;
-
 const Trash = ({ stickyOnTheMove, dispatchStickies }) => {
   return (
     <div
@@ -29,15 +27,17 @@ const Trash = ({ stickyOnTheMove, dispatchStickies }) => {
   );
 };
 
-type StickiesReducerType = (
-  stickies: StickiesType,
+type TStickies = Record<number, TSticky>;
+
+type TStickiesReducer = (
+  stickies: TStickies,
   action: TSticky & {
     type: 'add' | 'move' | 'delete';
     id: number;
   }
-) => StickiesType;
+) => TStickies;
 
-const stickiesReducer: StickiesReducerType = (stickies, action) => {
+const stickiesReducer: TStickiesReducer = (stickies, action) => {
   const { type, id, note, size, position, onTheMove } = action;
   if (!note) return stickies;
   switch (type) {
