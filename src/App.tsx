@@ -31,7 +31,7 @@ const Trash = ({ stickyOnTheMove, dispatchStickies }) => {
 
 type StickiesReducerType = (
   stickies: StickiesType,
-  action: StickyType & {
+  action: TSticky & {
     type: 'add' | 'move' | 'delete';
     id: number;
   }
