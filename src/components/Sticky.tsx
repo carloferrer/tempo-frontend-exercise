@@ -13,15 +13,13 @@ export const Sticky = ({
   onTheMove,
   dispatchStickies,
 }: StickyProps) => {
-  const sizeValue = size === 'large' ? 200 : 100;
-
   return (
     <div
       id={`sticky-${id}`}
       style={{
         backgroundColor: 'beige',
-        width: `${sizeValue}px`,
-        height: `${sizeValue}px`,
+        width: `${size}px`,
+        height: `${size}px`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -51,8 +49,8 @@ export const Sticky = ({
             note,
             size,
             position: {
-              x: clientX - sizeValue / 2,
-              y: clientY - sizeValue / 2,
+              x: clientX - size / 2,
+              y: clientY - size / 2,
             },
             onTheMove,
           });

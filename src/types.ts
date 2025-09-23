@@ -1,7 +1,7 @@
 export type TSticky = {
   id: number;
   note: string;
-  size: 'small' | 'large';
+  size: number;
   onTheMove: boolean;
   position: {
     x: number;

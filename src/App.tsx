@@ -93,7 +93,7 @@ function App() {
             type: 'add',
             id: Object.keys(stickies).length,
             note: newNote,
-            size: 'small',
+            size: 150,
             position: {
               x: clientX - 150 / 2,
               y: clientY - 150 / 2,
@@ -111,7 +111,7 @@ function App() {
             type: 'add',
             id: Object.keys(stickies).length,
             note: newNote,
-            size: 'large',
+            size: 300,
             position: {
               x: clientX - 300 / 2,
               y: clientY - 300 / 2,
