@@ -13,15 +13,15 @@ export const Sticky = ({ sticky, dispatchStickies }: StickyProps) => {
     <div
       id={`sticky-${id}`}
       style={{
-        backgroundColor: 'beige',
         width: `${size}px`,
         height: `${size}px`,
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        cursor: `${onTheMove ? 'grabbing' : 'grab'}`,
+        backgroundColor: 'beige',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'absolute',
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        cursor: `${onTheMove ? 'grabbing' : 'grab'}`,
         userSelect: 'none',
         WebkitUserSelect: 'none',
       }}
