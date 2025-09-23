@@ -1,18 +1,14 @@
 import { type TDispatchStickies } from '../App';
 import type { TSticky } from '../types';
 
-interface StickyProps extends TSticky {
+interface StickyProps {
+  sticky: TSticky;
   dispatchStickies: TDispatchStickies;
 }
 
-export const Sticky = ({
-  id,
-  note,
-  position,
-  size,
-  onTheMove,
-  dispatchStickies,
-}: StickyProps) => {
+export const Sticky = ({ sticky, dispatchStickies }: StickyProps) => {
+  const { id, note, position, size, onTheMove } = sticky;
+
   return (
     <div
       id={`sticky-${id}`}
@@ -31,36 +27,27 @@ export const Sticky = ({
       }}
       onMouseDown={() => {
         dispatchStickies({
+          ...sticky,
           type: 'move',
-          id,
-          note,
-          size,
-          position,
           onTheMove: true,
         });
       }}
       onPointerMove={({ clientX, clientY }) => {
         if (onTheMove) {
           dispatchStickies({
+            ...sticky,
             type: 'move',
-            id,
-            note,
-            size,
             position: {
               x: clientX - size / 2,
               y: clientY - size / 2,
             },
-            onTheMove,
           });
         }
       }}
       onMouseUp={() => {
         dispatchStickies({
+          ...sticky,
           type: 'move',
-          id,
-          note,
-          size,
-          position,
           onTheMove: false,
         });
       }}

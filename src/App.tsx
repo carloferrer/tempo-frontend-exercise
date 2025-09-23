@@ -69,15 +69,7 @@ function App() {
   );
 
   const renderedStickies = Object.entries(stickies).map(([id, sticky]) => (
-    <Sticky
-      key={id}
-      id={sticky.id}
-      note={sticky.note}
-      size={sticky.size}
-      dispatchStickies={dispatchStickies}
-      position={sticky.position}
-      onTheMove={sticky.onTheMove}
-    />
+    <Sticky key={id} sticky={sticky} dispatchStickies={dispatchStickies} />
   ));
 
   return (
