@@ -33,7 +33,6 @@ type TStickiesReducer = (
   stickies: TStickies,
   action: TSticky & {
     type: 'add' | 'move' | 'delete';
-    id: number;
   }
 ) => TStickies;
 
@@ -51,6 +50,14 @@ const stickiesReducer: TStickiesReducer = (stickies, action) => {
       return stickies;
   }
 };
+
+export type TDispatchStickies = React.ActionDispatch<
+  [
+    action: TSticky & {
+      type: 'add' | 'move' | 'delete';
+    }
+  ]
+>;
 
 function App() {
   const [stickies, dispatchStickies] = useReducer(stickiesReducer, {});

@@ -1,14 +1,8 @@
+import { type TDispatchStickies } from '../App';
 import type { TSticky } from '../types';
 
 interface StickyProps extends TSticky {
-  dispatchStickies: React.ActionDispatch<
-    [
-      action: TSticky & {
-        type: 'add' | 'move' | 'delete';
-        id: number;
-      }
-    ]
-  >;
+  dispatchStickies: TDispatchStickies;
 }
 
 export const Sticky = ({
