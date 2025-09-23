@@ -1,5 +1,6 @@
 import { useMemo, useReducer, useState } from 'react';
-import { type TSticky, Sticky } from './components/Sticky';
+import type { TSticky } from './types';
+import { Sticky } from './components/Sticky';
 
 type StickiesType = Record<number, TSticky>;
 
