@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# Tempo Software - Frontend Exercise
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Run the following to get started:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+$ git clone git@github.com:carloferrer/tempo-frontend-exercise.git
+$ cd tempo-frontend-exercise
+$ npm i
+$ npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3 of 4 proposed features were implemented.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Create a new note of the specified size at the specified position
+
+To create a new note:
+
+1. Type the new note's text at the input field at the top
+1. Click either **"+ small note"** or **"+ big note"** buttons
+1. At this point, the new note will follow your cursor; position the new note with your cursor, and click to place the note
+
+### Move a note by dragging
+
+To move a note, click and drag!
+
+### Remove a note by dragging it over a predefined "trash" zone
+
+The trash zone is indicated by a pink section at the bottom of the screen. Drag notes to this area to delete them.
+
+## Architecture
+
+### Build
+
+The project is built on Vite with React and TypeScript + SWC.
+
 ```
+$ npm create vite@latest
+```
+
+In my experience spinning up hobby projects and experiments, this has proven to grant very fast local server startup and HMR.
+
+### Directory Structure
+
+- Any abstracted React components live at `src/components/`; this simplifies the composition of more complex TSX arrangements
+- Type definitions are kept in the same file as the components their based on; otherwise, shared types with no clear source of truth live at `src/types.ts`
+
+### Code Structure
+
+- `useReducer` is leveraged to neatly manage the sticky note data, keeping the state's update logic contained
+- Styles were defined directly against TSX to minimize developer overhead
+
+## Other Notes
+
+Per the assessment instructions, I allowed myself ~6hrs to build this project, including:
+
+- Design
+- Technical research
+- Testing/troubleshooting
+
+As such, compromises were made to meet the project's requirements within the limited timeframe.
