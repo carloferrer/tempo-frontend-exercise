@@ -19,6 +19,8 @@ export const Trash = ({ stickyOnTheMove, dispatchStickies }: TrashProps) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
       }}
       onMouseOver={() => {
         if (stickyOnTheMove) {
@@ -29,7 +31,7 @@ export const Trash = ({ stickyOnTheMove, dispatchStickies }: TrashProps) => {
         }
       }}
     >
-      <p style={{ fontSize: 40 }}>🗑️</p>
+      <p style={{ fontSize: 18 }}>Drag notes here to delete</p>
     </div>
   );
 };
