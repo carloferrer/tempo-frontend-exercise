@@ -14,7 +14,6 @@ export const AddStickyButton = ({
   stickies,
   dispatchStickies,
 }: AddStickyButtonProps) => {
-  const mouseAtCenterShift = useMemo(() => size / 2, [size]);
   const newId = useMemo(() => Object.keys(stickies).length, [stickies]);
   const label = size === 200 ? 'small note' : 'BIG NOTE';
 
@@ -27,13 +26,19 @@ export const AddStickyButton = ({
           note: newNote,
           size,
           position: {
-            x: clientX - mouseAtCenterShift,
-            y: clientY - mouseAtCenterShift,
+            x: clientX - size / 2,
+            y: clientY - size / 1.5,
           },
           onTheMove: true,
         });
       }}
-      style={{ marginLeft: 10, padding: 10, border: 'solid black 1px' }}
+      style={{
+        fontSize: 18,
+        marginLeft: 10,
+        padding: 10,
+        border: 'solid black 1px',
+        cursor: 'pointer',
+      }}
     >
       + {label}
     </a>
