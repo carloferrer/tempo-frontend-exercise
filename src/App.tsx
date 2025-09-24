@@ -1,31 +1,7 @@
 import { useMemo, useReducer, useState } from 'react';
 import type { TSticky } from './types';
 import { Sticky } from './components/Sticky';
-
-const Trash = ({ stickyOnTheMove, dispatchStickies }) => {
-  return (
-    <div
-      style={{
-        backgroundColor: 'tomato',
-        position: 'absolute',
-        height: 100,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
-      onMouseOver={() => {
-        if (stickyOnTheMove) {
-          dispatchStickies({
-            ...stickyOnTheMove,
-            type: 'delete',
-          });
-        }
-      }}
-    >
-      <p>shadow realm</p>
-    </div>
-  );
-};
+import { Trash } from './components/Trash';
 
 type TStickies = Record<number, TSticky>;
 
@@ -35,6 +11,14 @@ type TStickiesReducer = (
     type: 'add' | 'move' | 'delete';
   }
 ) => TStickies;
+
+export type TDispatchStickies = React.ActionDispatch<
+  [
+    action: TSticky & {
+      type: 'add' | 'move' | 'delete';
+    }
+  ]
+>;
 
 const stickiesReducer: TStickiesReducer = (stickies, action) => {
   const { type, id, note, size, position, onTheMove } = action;
@@ -50,14 +34,6 @@ const stickiesReducer: TStickiesReducer = (stickies, action) => {
       return stickies;
   }
 };
-
-export type TDispatchStickies = React.ActionDispatch<
-  [
-    action: TSticky & {
-      type: 'add' | 'move' | 'delete';
-    }
-  ]
->;
 
 function App() {
   const [stickies, dispatchStickies] = useReducer(stickiesReducer, {});
