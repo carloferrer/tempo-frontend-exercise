@@ -1,9 +1,10 @@
 import { useMemo, useReducer, useState } from 'react';
 import type { TSticky } from './types';
 import { Sticky } from './components/Sticky';
+import { AddStickyButton } from './components/AddStickyButton';
 import { Trash } from './components/Trash';
 
-type TStickies = Record<number, TSticky>;
+export type TStickies = Record<number, TSticky>;
 
 type TStickiesReducer = (
   stickies: TStickies,
@@ -49,48 +50,24 @@ function App() {
   ));
 
   return (
-    <div>
+    <div style={{ paddingTop: '20px' }}>
       <input
         type='text'
         value={newNote}
         onChange={(e) => setNewNote(e.currentTarget.value)}
       />
-      <a
-        onClick={({ clientX, clientY }) => {
-          dispatchStickies({
-            type: 'add',
-            id: Object.keys(stickies).length,
-            note: newNote,
-            size: 150,
-            position: {
-              x: clientX - 150 / 2,
-              y: clientY - 150 / 2,
-            },
-            onTheMove: true,
-          });
-        }}
-        style={{ margin: 10 }}
-      >
-        add small sticky
-      </a>
-      <a
-        onClick={({ clientX, clientY }) => {
-          dispatchStickies({
-            type: 'add',
-            id: Object.keys(stickies).length,
-            note: newNote,
-            size: 300,
-            position: {
-              x: clientX - 300 / 2,
-              y: clientY - 300 / 2,
-            },
-            onTheMove: true,
-          });
-        }}
-        style={{ margin: 10 }}
-      >
-        add large sticky
-      </a>
+      <AddStickyButton
+        newNote={newNote}
+        size={200}
+        stickies={stickies}
+        dispatchStickies={dispatchStickies}
+      />
+      <AddStickyButton
+        newNote={newNote}
+        size={400}
+        stickies={stickies}
+        dispatchStickies={dispatchStickies}
+      />
       <>{renderedStickies}</>
       <Trash
         stickyOnTheMove={stickyOnTheMove}
