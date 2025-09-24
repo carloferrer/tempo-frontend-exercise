@@ -1,5 +1,7 @@
 # Tempo Software - Frontend Exercise
 
+https://github.com/user-attachments/assets/25bacce8-ca9c-458c-8bbc-5a3faef35387
+
 Run the following to get started:
 
 ```
