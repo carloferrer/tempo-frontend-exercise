@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { type TDispatchStickies, type TStickies } from '../App';
+import { type TStickies, type TDispatchStickies } from '../App';
 
 interface AddStickyButtonProps {
   newNote: string;
