@@ -20,7 +20,7 @@ $ npm run dev
 To create a new note:
 
 1. Type the new note's text at the input field at the top
-1. Click either **"+ small note"** or **"+ big note"** buttons
+1. Click either **"+ small note"** or **"+ BIG NOTE"** buttons
 1. At this point, the new note will follow your cursor; position the new note with your cursor, and click to place the note
 
 ### Move a note by dragging
