@@ -39,7 +39,7 @@ export const Sticky = ({ sticky, dispatchStickies }: StickyProps) => {
             type: 'move',
             position: {
               x: clientX - size / 2,
-              y: clientY - size / 2,
+              y: clientY - size / 1.5,
             },
           });
         }
@@ -52,7 +52,7 @@ export const Sticky = ({ sticky, dispatchStickies }: StickyProps) => {
         });
       }}
     >
-      <p>{note}</p>
+      <p style={{ fontSize: 18 }}>{note}</p>
     </div>
   );
 };

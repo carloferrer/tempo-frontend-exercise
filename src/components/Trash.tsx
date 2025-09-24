@@ -10,12 +10,17 @@ export const Trash = ({ stickyOnTheMove, dispatchStickies }: TrashProps) => {
   return (
     <div
       style={{
-        backgroundColor: 'tomato',
+        backgroundColor: 'pink',
         position: 'absolute',
         height: 100,
         left: 0,
         right: 0,
         bottom: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
       }}
       onMouseOver={() => {
         if (stickyOnTheMove) {
@@ -26,7 +31,7 @@ export const Trash = ({ stickyOnTheMove, dispatchStickies }: TrashProps) => {
         }
       }}
     >
-      <p>shadow realm</p>
+      <p style={{ fontSize: 18 }}>Drag notes here to delete</p>
     </div>
   );
 };

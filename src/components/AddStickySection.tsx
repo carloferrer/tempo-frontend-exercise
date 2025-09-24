@@ -14,20 +14,36 @@ export const AddStickySection = ({
   const [newNote, setNewNote] = useState('');
 
   return (
-    <section>
+    <section
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <input
+        placeholder='Type a new note here'
+        style={{
+          fontSize: 18,
+          marginLeft: 10,
+          height: 30,
+          width: 300,
+          backgroundColor: 'beige',
+        }}
         type='text'
         value={newNote}
         onChange={(e) => setNewNote(e.currentTarget.value)}
       />
       <AddStickyButton
         newNote={newNote}
+        setNewNote={setNewNote}
         size={200}
         stickies={stickies}
         dispatchStickies={dispatchStickies}
       />
       <AddStickyButton
         newNote={newNote}
+        setNewNote={setNewNote}
         size={300}
         stickies={stickies}
         dispatchStickies={dispatchStickies}
