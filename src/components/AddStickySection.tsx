@@ -22,7 +22,7 @@ export const AddStickySection = ({
       }}
     >
       <input
-        placeholder='1. Type note here'
+        placeholder='Type a new note here'
         style={{
           fontSize: 18,
           marginLeft: 10,
@@ -36,12 +36,14 @@ export const AddStickySection = ({
       />
       <AddStickyButton
         newNote={newNote}
+        setNewNote={setNewNote}
         size={200}
         stickies={stickies}
         dispatchStickies={dispatchStickies}
       />
       <AddStickyButton
         newNote={newNote}
+        setNewNote={setNewNote}
         size={300}
         stickies={stickies}
         dispatchStickies={dispatchStickies}

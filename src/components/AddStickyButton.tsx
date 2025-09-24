@@ -3,6 +3,7 @@ import { type TStickies, type TDispatchStickies } from '../App';
 
 interface AddStickyButtonProps {
   newNote: string;
+  setNewNote: (n: string) => void;
   size: 200 | 300;
   stickies: TStickies;
   dispatchStickies: TDispatchStickies;
@@ -10,6 +11,7 @@ interface AddStickyButtonProps {
 
 export const AddStickyButton = ({
   newNote,
+  setNewNote,
   size,
   stickies,
   dispatchStickies,
@@ -20,6 +22,7 @@ export const AddStickyButton = ({
   return (
     <a
       onClick={({ clientX, clientY }) => {
+        setNewNote('');
         dispatchStickies({
           type: 'add',
           id: newId,
