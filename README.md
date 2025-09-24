@@ -46,7 +46,7 @@ In my experience spinning up hobby projects and experiments, this has proven to 
 ### Directory Structure
 
 - Any abstracted React components live at `src/components/`; this simplifies the composition of more complex TSX arrangements
-- Type definitions are kept in the same file as the components their based on; otherwise, shared types with no clear source of truth live at `src/types.ts`
+- Type definitions are kept in the same file as the components they're based on; otherwise, shared types with no clear source of truth live at `src/types.ts`
 
 ### Code Structure
 
@@ -61,4 +61,4 @@ Per the assessment instructions, I allowed myself ~6hrs to build this project, i
 - Technical research
 - Testing/troubleshooting
 
-As such, compromises were made to meet the project's requirements within the limited timeframe.
+As such, compromises were made to meet the project's requirements within the limited timeframe (e.g., tests, further UX polish, etc.).
