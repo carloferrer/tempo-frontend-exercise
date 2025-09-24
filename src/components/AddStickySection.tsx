@@ -14,8 +14,22 @@ export const AddStickySection = ({
   const [newNote, setNewNote] = useState('');
 
   return (
-    <section>
+    <section
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <input
+        placeholder='1. Type note here'
+        style={{
+          fontSize: 18,
+          marginLeft: 10,
+          height: 30,
+          width: 300,
+          backgroundColor: 'beige',
+        }}
         type='text'
         value={newNote}
         onChange={(e) => setNewNote(e.currentTarget.value)}
