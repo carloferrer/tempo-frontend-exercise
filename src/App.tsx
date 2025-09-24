@@ -1,98 +1,6 @@
 import { useMemo, useReducer, useState } from 'react';
-
-type StickyType = {
-  id: number;
-  note: string;
-  size: 'small' | 'large';
-  onTheMove: boolean;
-  position: {
-    x: number;
-    y: number;
-  };
-};
-
-type StickiesType = Record<number, StickyType>;
-
-const Sticky = ({
-  id,
-  note,
-  position,
-  size,
-  onTheMove,
-  dispatchStickies,
-}: StickyType & {
-  dispatchStickies: React.ActionDispatch<
-    [
-      action: StickyType & {
-        type: 'add' | 'move' | 'delete';
-        id: number;
-      }
-    ]
-  >;
-}) => {
-  const sizeValue = size === 'large' ? 200 : 100;
-
-  return (
-    <div
-      id={`sticky-${id}`}
-      style={{
-        backgroundColor: 'beige',
-        width: `${sizeValue}px`,
-        height: `${sizeValue}px`,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        cursor: `${onTheMove ? 'grabbing' : 'grab'}`,
-        userSelect: 'none',
-        WebkitUserSelect: 'none',
-      }}
-      onMouseDown={() => {
-        console.log(`grabbing ${id}`);
-        dispatchStickies({
-          type: 'move',
-          id,
-          note,
-          size,
-          position,
-          onTheMove: true,
-        });
-      }}
-      onPointerMove={({ clientX, clientY }) => {
-        if (onTheMove) {
-          console.log({ id, clientX, clientY });
-          dispatchStickies({
-            type: 'move',
-            id,
-            note,
-            size,
-            position: {
-              x: clientX - sizeValue / 2,
-              y: clientY - sizeValue / 2,
-            },
-            onTheMove,
-          });
-        }
-      }}
-      onMouseUp={() => {
-        console.log(`released ${id}`);
-        dispatchStickies({
-          type: 'move',
-          id,
-          note,
-          size,
-          position,
-          onTheMove: false,
-        });
-      }}
-    >
-      <p>
-        id: {id} | {note}
-      </p>
-    </div>
-  );
-};
+import type { TSticky } from './types';
+import { Sticky } from './components/Sticky';
 
 const Trash = ({ stickyOnTheMove, dispatchStickies }) => {
   return (
@@ -119,15 +27,16 @@ const Trash = ({ stickyOnTheMove, dispatchStickies }) => {
   );
 };
 
-type StickiesReducerType = (
-  stickies: StickiesType,
-  action: StickyType & {
-    type: 'add' | 'move' | 'delete';
-    id: number;
-  }
-) => StickiesType;
+type TStickies = Record<number, TSticky>;
 
-const stickiesReducer: StickiesReducerType = (stickies, action) => {
+type TStickiesReducer = (
+  stickies: TStickies,
+  action: TSticky & {
+    type: 'add' | 'move' | 'delete';
+  }
+) => TStickies;
+
+const stickiesReducer: TStickiesReducer = (stickies, action) => {
   const { type, id, note, size, position, onTheMove } = action;
   if (!note) return stickies;
   switch (type) {
@@ -142,6 +51,14 @@ const stickiesReducer: StickiesReducerType = (stickies, action) => {
   }
 };
 
+export type TDispatchStickies = React.ActionDispatch<
+  [
+    action: TSticky & {
+      type: 'add' | 'move' | 'delete';
+    }
+  ]
+>;
+
 function App() {
   const [stickies, dispatchStickies] = useReducer(stickiesReducer, {});
   const [newNote, setNewNote] = useState('');
@@ -152,15 +69,7 @@ function App() {
   );
 
   const renderedStickies = Object.entries(stickies).map(([id, sticky]) => (
-    <Sticky
-      key={id}
-      id={sticky.id}
-      note={sticky.note}
-      size={sticky.size}
-      dispatchStickies={dispatchStickies}
-      position={sticky.position}
-      onTheMove={sticky.onTheMove}
-    />
+    <Sticky key={id} sticky={sticky} dispatchStickies={dispatchStickies} />
   ));
 
   return (
@@ -176,7 +85,7 @@ function App() {
             type: 'add',
             id: Object.keys(stickies).length,
             note: newNote,
-            size: 'small',
+            size: 150,
             position: {
               x: clientX - 150 / 2,
               y: clientY - 150 / 2,
@@ -194,7 +103,7 @@ function App() {
             type: 'add',
             id: Object.keys(stickies).length,
             note: newNote,
-            size: 'large',
+            size: 300,
             position: {
               x: clientX - 300 / 2,
               y: clientY - 300 / 2,
